@@ -1,0 +1,2 @@
+# nvimking
+Neovim base config
