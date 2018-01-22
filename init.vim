@@ -23,7 +23,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Konfekt/FastFold'
     Plug 'kopischke/vim-stay'
 
-    Plug 'sheerun/vim-polyglot'
     Plug 'fatih/vim-go'
     Plug 'gorodinskiy/vim-coloresque'
     Plug 'mattn/emmet-vim'
@@ -49,7 +48,6 @@ let mapleader=","
     nmap <Leader>s :%s//g<Left><Left>
     set ignorecase          " Make searching case insensitive
     set smartcase           " ... unless the query has capital letters.
-    set gdefault            " Use 'g' flag by default with :s/foo/bar/.
     set magic               " Use 'magic' patterns (extended regular expressions).
     """ Use <C-L> to clear the highlighting of :set hlsearch.
     if maparg('<C-L>', 'n') ==# ''
@@ -213,6 +211,7 @@ source ~/.config/nvim/plugins/devicons.vim
 source ~/.config/nvim/plugins/tagbar.vim
 source ~/.config/nvim/plugins/deoplete.vim
 source ~/.config/nvim/plugins/stay.vim
+source ~/.config/nvim/plugins/fastfold.vim
 
 " APPEARENCE
 source ~/.config/nvim/appearence.vim
@@ -221,6 +220,5 @@ source ~/.config/nvim/appearence.vim
 source ~/.config/nvim/languages/golang.vim
 source ~/.config/nvim/languages/javascript.vim
 
-let g:fastfold_savehook = 0
 
 " vim:set ft=vim sw=4 ts=4:
