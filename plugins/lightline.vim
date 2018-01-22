@@ -9,8 +9,8 @@ let g:lightline = {
     \ },
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'filename' ]],
-    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype'], ['synatastic'] ]
+    \             [ 'fugitive', 'absolutepath', 'relativepath', 'modified' ]],
+    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype'], ['gitbranch'], ['synatastic'] ]
     \ },
     \ 'component': {
     \   'readonly': '%{&readonly?"":""}',
@@ -39,6 +39,7 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \   'bufferinfo': 'lightline#buffer#bufferinfo',
+    \   'gitbranch': 'fugitive#head'
     \ },
     \ 'separator': { 'left': '', 'right': '' },
     \ 'subseparator': { 'left': '', 'right': '' },
