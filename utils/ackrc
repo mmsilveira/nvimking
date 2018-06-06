@@ -24,5 +24,6 @@
 --ignore-dir=node_modules
 --ignore-dir=plugged
 --ignore-dir=autoload
+--ignore-dir=dist
 
 --ignore-file=is:.tags

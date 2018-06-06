@@ -22,6 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'honza/vim-snippets'
     Plug 'Konfekt/FastFold'
     Plug 'kopischke/vim-stay'
+    Plug 'editorconfig/editorconfig-vim'
 
     Plug 'fatih/vim-go'
     Plug 'gorodinskiy/vim-coloresque'
@@ -96,7 +97,7 @@ let mapleader=","
     set foldmethod=indent       " Syntax highlighting | using indentation as foldmethod to speed up vim
     set mouse=a                 " Automatically enable mouse usage
     set mousehide 
-    set autochdir           " Switch to current file's parent directory.
+    "set autochdir           " Switch to current file's parent directory. (Generate Problem in Ack and CtrlP)
 
     " Remove special characters for filename
     set isfname-=:
@@ -179,7 +180,7 @@ let mapleader=","
     noremap <C-k> <C-w>k
     noremap <C-l> <C-w>l
     noremap <C-h> <C-w>h
-
+ 
     "" Split
     noremap <Leader>h :<C-u>split<CR>
     noremap <Leader>v :<C-u>vsplit<CR>
