@@ -25,5 +25,6 @@
 --ignore-dir=plugged
 --ignore-dir=autoload
 --ignore-dir=dist
+--ignore-dir=release
 
 --ignore-file=is:.tags
