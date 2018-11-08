@@ -1,59 +1,105 @@
+"""""""""""""""""""""""""""""""""""""
+" msilveira nvim configuration
+"""""""""""""""""""""""""""""""""""""
+
+set encoding=utf8
+
 call plug#begin('~/.config/nvim/plugged')
 
 " Plugins {
-    Plug 'neomake/neomake'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'itchyny/lightline.vim'
-    Plug 'taohex/lightline-buffer'
+    " Utility
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeTabsToggle'] }
     Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeToggle', 'NERDTreeTabsToggle'] }
-    Plug 'morhetz/gruvbox'
-    Plug 'mileszs/ack.vim'
+    Plug 'majutsushi/tagbar'
+    Plug 'jceb/vim-orgmode'
+    Plug 'kopischke/vim-stay'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+
+    " Generic Programming Support
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'w0rp/ale'
+    Plug 'fatih/vim-go'
+    Plug 'neomake/neomake'
+    Plug 'mattn/emmet-vim'
     Plug 'scrooloose/nerdcommenter'
+    Plug 'Yggdroot/indentLine'
+    Plug 'Konfekt/FastFold'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'janko-m/vim-test'
+
+    " Snippets & Code Completation
+    Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
+    Plug 'ncm2/ncm2-tern', {'do': 'npm install'}
+    Plug 'ncm2/ncm2-go'
+    Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+    Plug 'ncm2/ncm2-cssomni'
+    Plug 'ncm2/ncm2-html-subscope'
+    Plug 'ncm2/ncm2-markdown-subscope'
+    Plug 'ncm2/ncm2-rst-subscope'
+    Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips'
+
+    " Markdown / Writting
+    Plug 'reedes/vim-pencil'
+    Plug 'tpope/vim-markdown'
+    Plug 'jtratner/vim-flavored-markdown'
+    Plug 'dpelle/vim-LanguageTool'
+
+    " Git Support
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'majutsushi/tagbar'
+
+    " Theme / Interface
     Plug 'ryanoasis/vim-devicons'
-    Plug 'Yggdroot/indentLine'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Raimondi/delimitMate'
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'Konfekt/FastFold'
-    Plug 'kopischke/vim-stay'
-    Plug 'editorconfig/editorconfig-vim'
-
-    Plug 'fatih/vim-go'
+    Plug 'itchyny/lightline.vim'
+    Plug 'morhetz/gruvbox'
+    Plug 'taohexxx/lightline-buffer'
     Plug 'gorodinskiy/vim-coloresque'
-    Plug 'mattn/emmet-vim'
-
 " }
 call plug#end()
 
-" LEADER
+"""""""""""""""""""""""""""""""""""""
+" Configuration Section
+"""""""""""""""""""""""""""""""""""""
+
+" Leader
 let mapleader=","
 
-" LANGUAGES
-
-
-" SETTINGS
+" Config {
+    nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
+    nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
+    nnoremap <leader>q  :help quickref<cr>
+" }
 
 " General {
-    set noautoindent        " I indent my code myself.
-    set nocindent           " I indent my code myself.
+    syntax on
+    filetype plugin indent on " Automatically detect file types.
+    set noautoindent          " I indent my code myself.
+    set nocindent             " I indent my code myself.
+    set foldenable            " Auto fold code
+    set foldmethod=indent     " Syntax highlighting | using indentation as foldmethod to speed up vim
+    set mouse=a               " Automatically enable mouse usage
+    set mousehide             " The mouse pointer is hidden when characters are typed.
     set timeoutlen=1000 ttimeoutlen=0 " Eliminating delays on ESC
+
+    if &undolevels < 200
+        set undolevels=200  " Number of undo levels.
+    endif
+    "set autochdir            " Switch to current file's parent directory.
 " }
 
 " Search {
-    nmap <Leader>s :%s//g<Left><Left>
+    nnoremap <c-p> :Files<cr>
+    nnoremap <c-f> :Ag<space>
+    nnoremap <c-s> :%s//g<Left><Left>
+    nnoremap <c-c> :noh<cr>
     set ignorecase          " Make searching case insensitive
     set smartcase           " ... unless the query has capital letters.
     set magic               " Use 'magic' patterns (extended regular expressions).
-    """ Use <C-L> to clear the highlighting of :set hlsearch.
-    if maparg('<C-L>', 'n') ==# ''
-        nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-    endif
 " }
 
 " Formating {
@@ -61,17 +107,14 @@ let mapleader=","
     set number              " Show the line numbers on the left side.
     set formatoptions+=o    " Continue comment marker in new lines.
     set textwidth=0         " Hard-wrap long lines as you type them.
-
-    set expandtab           " Insert spaces when TAB is pressed.<Paste>
+    set expandtab           " Insert spaces when TAB is pressed.
     set tabstop=4           " Render TABs using this many spaces.
     set shiftwidth=4        " Indentation amount for < and > commands.
-
     set linespace=0         " GUI: Set line-spacing to minimum.
     set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
-
-    " More natural splits
     set splitbelow          " Horizontal split below current.
     set splitright          " Vertical split to right of current.
+    set diffopt+=iwhite     " Diff options: ignore white spaces
 
     if !&scrolloff
         set scrolloff=3     " Show next 3 lines while scrolling.
@@ -81,40 +124,9 @@ let mapleader=","
     endif
     set nostartofline       " Do not jump to first character with page commands.
 
-    "" Trailing whitespace, and end-of-lines. VERY useful!
-    if &listchars ==# 'eol:$'
-        set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-    endif
     set list                " Show problematic characters.
-" }
-
-" Configuration {
-    syntax on
-    filetype plugin indent on   " Automatically detect file types.
-
-    set encoding=utf8
-    set foldenable          " Auto fold code
-    set foldmethod=indent       " Syntax highlighting | using indentation as foldmethod to speed up vim
-    set mouse=a                 " Automatically enable mouse usage
-    set mousehide 
-    "set autochdir           " Switch to current file's parent directory. (Generate Problem in Ack and CtrlP)
-
-    " Remove special characters for filename
-    set isfname-=:
-    set isfname-==
-    set isfname-=+
-
-    "" Remap
-    nnoremap ; :    " Use ; for commands.
-    nnoremap Q @q   " Use Q to execute default register.
-
-    if &undolevels < 200
-        set undolevels=200  " Number of undo levels.
-    endif
-
-    " Allow color schemes to do bright colors without forcing bold.
-    if &t_Co == 8 && $TERM !~# '^linux'
-        set t_Co=16
+    if &listchars ==# 'eol:$'
+        set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+ " Trailing whitespace, and end-of-lines. VERY useful!
     endif
 
     " Remove trailing spaces.
@@ -123,24 +135,22 @@ let mapleader=","
         %s/\s\+$//e
         call winrestview(l:save)
     endfunction
-    " FIXME: Do not call this on makefile and sv files.
-    " autocmd BufWritePre * call TrimWhitespace()
+    autocmd BufWritePre * call TrimWhitespace()
     nnoremap <leader>W :call TrimWhitespace()<CR>
 
-    " Diff options: ignore white spaces
-    set diffopt+=iwhite
-
-    " Stop cursor from jumping over wrapped lines
-    nnoremap j gj
-    nnoremap k gk
-
-    " Make HOME and END behave like shell
-    inoremap <C-E> <End>
-    inoremap <C-A> <Home>
+    " Remove special characters for filename
+    set isfname-=:
+    set isfname-==
+    set isfname-=+
 " }
 
 " UI Options {
     let no_buffers_menu=1   " Enable buffer menu
+
+    " Allow color schemes to do bright colors without forcing bold.
+    if &t_Co == 8 && $TERM !~# '^linux'
+        set t_Co=16
+    endif
 
     " Also highlight all tabs and trailing whitespace characters.
     highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -172,7 +182,13 @@ let mapleader=","
     cnoreabbrev Q q
     cnoreabbrev Qall qall
 
-    "" Close buffer
+    " Use ; for commands.
+    nnoremap ; :
+
+    " Use Q to execute default register.
+    nnoremap Q @q
+
+    " Close buffer
     noremap <leader>c :bd<CR>
 
     " Switching windows
@@ -180,7 +196,11 @@ let mapleader=","
     noremap <C-k> <C-w>k
     noremap <C-l> <C-w>l
     noremap <C-h> <C-w>h
- 
+
+    " Stop cursor from jumping over wrapped lines
+    nnoremap j gj
+    nnoremap k gk
+
     "" Split
     noremap <Leader>h :<C-u>split<CR>
     noremap <Leader>v :<C-u>vsplit<CR>
@@ -200,26 +220,30 @@ let mapleader=","
     nmap <Leader>l :bnext<CR>
 " }
 
-" PLUGINS
-source ~/.config/nvim/plugins/lightline.vim
-source ~/.config/nvim/plugins/nerdtree.vim
-source ~/.config/nvim/plugins/netrw.vim
-source ~/.config/nvim/plugins/ctrlp.vim
-source ~/.config/nvim/plugins/neomake.vim
-source ~/.config/nvim/plugins/ack.vim
-source ~/.config/nvim/plugins/fugitive.vim
-source ~/.config/nvim/plugins/devicons.vim
-source ~/.config/nvim/plugins/tagbar.vim
-source ~/.config/nvim/plugins/deoplete.vim
-source ~/.config/nvim/plugins/stay.vim
-source ~/.config/nvim/plugins/fastfold.vim
+" Plugins {
+    source ~/.config/nvim/plugins/devicons.vim
+    source ~/.config/nvim/plugins/fastfold.vim
+    source ~/.config/nvim/plugins/fugitive.vim
+    source ~/.config/nvim/plugins/languagetool.vim
+    source ~/.config/nvim/plugins/lightline.vim
+    source ~/.config/nvim/plugins/markdown.vim
+    source ~/.config/nvim/plugins/nerdtree.vim
+    source ~/.config/nvim/plugins/netrw.vim
+    source ~/.config/nvim/plugins/neomake.vim
+    source ~/.config/nvim/plugins/ncm2.vim
+    source ~/.config/nvim/plugins/pencil.vim
+    source ~/.config/nvim/plugins/stay.vim
+    source ~/.config/nvim/plugins/tagbar.vim
+    source ~/.config/nvim/plugins/ultisnips.vim
+" }
 
-" APPEARENCE
-source ~/.config/nvim/appearence.vim
+" Appearence {
+    source ~/.config/nvim/appearence.vim
+" }
 
-" LANGUAGES
-source ~/.config/nvim/languages/golang.vim
-source ~/.config/nvim/languages/javascript.vim
-
+" Languages {
+    source ~/.config/nvim/languages/javascript.vim
+    source ~/.config/nvim/languages/golang.vim
+" }
 
 " vim:set ft=vim sw=4 ts=4:
