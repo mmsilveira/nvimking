@@ -222,6 +222,7 @@ let mapleader=","
 	source ~/.config/nvim/plugins/devicons.vim
 	source ~/.config/nvim/plugins/fastfold.vim
 	source ~/.config/nvim/plugins/fugitive.vim
+	source ~/.config/nvim/plugins/fzf.vim
 	source ~/.config/nvim/plugins/languagetool.vim
 	source ~/.config/nvim/plugins/lightline.vim
 	source ~/.config/nvim/plugins/markdown.vim
