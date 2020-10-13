@@ -55,6 +55,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'itchyny/lightline.vim'
     Plug 'morhetz/gruvbox'
+	Plug 'overcache/NeoSolarized'
     Plug 'taohexxx/lightline-buffer'
     Plug 'gorodinskiy/vim-coloresque'
 " }
