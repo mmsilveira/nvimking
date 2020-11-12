@@ -92,7 +92,6 @@ let mapleader=","
 " }
 
 " Search {
-	nnoremap <c-p> :Files<cr>
 	nnoremap <c-f> :Ag<space>
 	nnoremap <c-s> :%s//g<Left><Left>
 	nnoremap <c-c> :noh<cr>
