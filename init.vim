@@ -187,7 +187,8 @@ let mapleader=","
 	nnoremap Q @q
 
 	" Close buffer
-	noremap <leader>c :bd<CR>
+	"noremap <leader>c :bd<CR>
+	noremap <leader>c :bp<cr>:bd #<cr>
 
 	" Switching windows
 	noremap <C-j> <C-w>j
