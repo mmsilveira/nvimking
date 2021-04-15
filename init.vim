@@ -27,6 +27,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'janko-m/vim-test'
+    Plug 'godlygeek/tabular'
 
     " Snippets & Code Completation
     Plug 'ncm2/ncm2'
