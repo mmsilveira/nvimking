@@ -59,6 +59,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'overcache/NeoSolarized'
     Plug 'taohexxx/lightline-buffer'
     Plug 'gorodinskiy/vim-coloresque'
+    Plug 'mhinz/vim-startify'
 " }
 call plug#end()
 
