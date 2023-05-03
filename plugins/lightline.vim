@@ -39,7 +39,7 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \   'bufferinfo': 'lightline#buffer#bufferinfo',
-    \   'gitbranch': 'fugitive#head'
+    \   'gitbranch': 'FugitiveHead'
     \ },
     \ 'separator': { 'left': '', 'right': '' },
     \ 'subseparator': { 'left': '', 'right': '' },

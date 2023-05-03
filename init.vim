@@ -50,7 +50,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Git Support
     Plug 'airblade/vim-gitgutter'
-    "Plug 'tpope/vim-fugitive', { 'tag': 'v3.7' }
+    Plug 'tpope/vim-fugitive', { 'tag': 'v3.7' }
 
     " Theme / Interface
     Plug 'ryanoasis/vim-devicons'
